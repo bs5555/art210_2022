@@ -7,7 +7,7 @@ Sq[][] mySquare = new Sq[1000][1000];
 void setup()
 {
   size(800,600);
-  d = width / 10;
+  d = width / 100;
   maxX = floor(width / d);
   maxY = floor(height / d);
   for(int y = 0; y < maxY; y = y + 1) 

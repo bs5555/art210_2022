@@ -38,7 +38,6 @@ class Sq
     {
       fill(color(255,255,255));
     }
-    if(this.marked) fill(0,255,130);
     square(this.xpos,this.ypos,this.d);
     fill(255,100,100);
   }
