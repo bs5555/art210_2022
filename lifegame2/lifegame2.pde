@@ -2,6 +2,8 @@ float d = 10;
 int maxX = 0;
 int maxY = 0;
 
+int state = 0;
+
 Sq[][] mySquare = new Sq[1000][1000];
 
 void setup()
@@ -14,32 +16,60 @@ void setup()
   {
     for(int x = 0; x < maxX; x = x + 1)
     {
-      mySquare[x][y] = new Sq(x*d,y*d,d);
+      mySquare[x][y] = new Sq(x,y,d);
     }
   }  
 }
 
-
 void draw()
 {
-
-   
   for(int y = 0; y < maxY; y = y + 1) 
   {
     for(int x = 0; x < maxX; x = x + 1)
     {
       mySquare[x][y].show();
     }
-  }  
-}
-
-void mousePressed()
-{
+  }
+  
   for(int y = 0; y < maxY; y = y + 1) 
   {
     for(int x = 0; x < maxX; x = x + 1)
     {
-      mySquare[x][y].clicked(mouseX,mouseY);
+      if(state == 1) mySquare[x][y].liveOrDie();
+    }
+  }
+  
+  for(int y = 0; y < maxY; y = y + 1) 
+  {
+    for(int x = 0; x < maxX; x = x + 1)
+    {
+      if(state == 1) mySquare[x][y].isBlack = mySquare[x][y].nextBlack;
+    }
+  }
+}
+
+void mousePressed()
+{
+  if(state == 0)
+  {
+    for(int y = 0; y < maxY; y = y + 1) 
+    {
+      for(int x = 0; x < maxX; x = x + 1)
+      {
+        mySquare[x][y].clicked(mouseX,mouseY);
+      }
     }
   }  
+}
+
+void keyPressed()
+{
+  if(state==0)
+  {
+    state = 1;
+  }
+  else
+  {
+    state = 0;
+  }
 }
